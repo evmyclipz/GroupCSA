@@ -8,7 +8,7 @@ public class NamarRep extends JFrame implements ActionListener {
     private JFrame frame;
     private JMenuBar menubar;
     private JMenu menu;
-    private JMenu menu1;
+    private JMenu menu1;//New menu
     private JLabel message = new JLabel("Enter Decimal Number:");
     private JTextField numVal = new JTextField(20);
     private JButton clearButton = new JButton("Clear");
@@ -16,7 +16,7 @@ public class NamarRep extends JFrame implements ActionListener {
         "Hex", "Binary", "Octal"
     };
 
-    public String[] NUM1 = { // 1D Array of Menu Choices
+    public String[] NUM1 = { // 1D Array of Menu #1 Choices
         "Sine", "Cosine", "Tangent"
     };
     
@@ -31,45 +31,48 @@ public class NamarRep extends JFrame implements ActionListener {
 	    menu = new JMenu("Number Representations");
         menu1 = new JMenu("Trigonometric Functions");
         
-        //Initializing Menu objects and adding actions
+        //Initializing number converstions Menu objects
         for (String mx : NUM) {
             JMenuItem m = new JMenuItem(mx);
             m.addActionListener(this);
             menu.add(m); 
         }
 
-        //Initializing Menu objects and adding actions
+        //Initializing trigonometry Menu objects
         for (String mx : NUM1) {
             JMenuItem m = new JMenuItem(mx);
             m.addActionListener(this);
             menu1.add(m); 
         }
         
-        clearButton.addActionListener(this);
+        clearButton.addActionListener(this);//to reset the text 
 
-        menubar.add(menu);
-        menubar.add(menu1);
+        menubar.add(menu);//add the new menu to the menubar
+        menubar.add(menu1);//add the new menu to the menubar
         frame.setJMenuBar(menubar);
+        
+        //New layout with 
         frame.setLayout(new FlowLayout());
         //frame.setLayout(50,30);
         frame.add(message);
         frame.add(numVal);
-        frame.add(clearButton);
+        frame.add(clearButton);//adds clear button
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 
-         frame.setSize(500,200);
+         frame.setSize(500,200); //inreasing the window size
 
-        frame.setVisible(true);
+        frame.setVisible(true);//to be visible
 
 }
 
+//direction for actions 
 public void actionPerformed(ActionEvent e) 
 {
     String s = e.getActionCommand();
     double value=0;
-    String out="";
+    String out="";// to produce the number conversiotn in a string
 
     if(s.equals(NUM1[0])) {
         value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText())));
@@ -83,16 +86,16 @@ public void actionPerformed(ActionEvent e)
         value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText())));
         numVal.setText(String.valueOf(value));
     }
-    else if(s.equals(NUM[0])) {
-        int x = Integer.parseInt(numVal.getText());
+    else if(s.equals(NUM[0])) { //use of if and else to provide direction of action
+        int x = Integer.parseInt(numVal.getText()); //Use fo wrapper class interger to convert from string to interger
 
         out="";
-        int a;
-        for(;x>=1; x=x/16) {
+        int a; //
+        for(;x>=1; x=x/16) { //decimal to hexadecimal
             a = x % 16;
             if(a>9) {
                 if(a==10) { 
-                    out+= 'A';
+                    out+= 'A';//appends to string
                 }
                 else if(a == 11) {
                 	out+= 'B';
@@ -111,40 +114,41 @@ public void actionPerformed(ActionEvent e)
                 }
             }
             else
-            	out+=String.valueOf(a);
+            	out+=String.valueOf(a);//appends to string
             
         }
-        numVal.setText("0x"+reverseString(out));
+        //most important line of code, hardest to use
+        numVal.setText("0x"+reverseString(out));//use of method which reverses the string because if you go through normal division, the remainder are not in correct order of a hex structure.
         
     }
-    else if(s.equals(NUM[1])) {
+    else if(s.equals(NUM[1])) { //use of if and else to provide direction of action
         int x = Integer.parseInt(numVal.getText());
-        int a;
-        out="";
-        for(; x>=1; x=x/2) {
+        int a; //always decleared to avoid mixing with other values
+        out=""; //always decleared to avoid mixing with other values
+        for(; x>=1; x=x/2) { //decimal to binary
             a = x % 2;
             out+=String.valueOf(a);
         }
-        numVal.setText(reverseString(out));
+        numVal.setText(reverseString(out)); //again use of 
     }
-    else if(s.equals(NUM[2])) {
+    else if(s.equals(NUM[2])) { 
         int x = Integer.parseInt(numVal.getText());
         int a;
         out = "";
-        for(;x>=1;x=x/8) {
+        for(;x>=1;x=x/8) { //decimal to octal
         	a = x % 8;
         	out+=String.valueOf(a);
         }
         numVal.setText(reverseString(out));
     }
-    else if(s.equals("Clear"))
+    else if(s.equals("Clear")) //to clear input 
     {
     	numVal.setText("");
     }
 
 }
-
-    private String reverseString(String out)
+    // reverses th input string
+    private String reverseString(String out) 
     {
     	char[] ch = out.toCharArray();
     	int x = out.length()-1;
@@ -155,9 +159,9 @@ public void actionPerformed(ActionEvent e)
     	return s;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //main programm which starts the GUI programm.....Very Proud of myself
         
-        NamarRep np= new NamarRep("My Menu");
+        NamarRep np= new NamarRep("My Menu"); //gives control to NamarRep
     }
 }
 
