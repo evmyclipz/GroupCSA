@@ -12,6 +12,7 @@ public class NamarRep extends JFrame implements ActionListener {
     private JMenu menu;
     private JMenu menu1;//New menu
     private JLabel message = new JLabel("Enter Decimal Number:");
+    private JLaberl outputMsg = new JLabel(""); 
     private JTextField numVal = new JTextField(20);
     private JButton clearButton = new JButton("Clear");
     public String[] NUM = { // 1D Array of Menu Choices
@@ -59,6 +60,7 @@ public class NamarRep extends JFrame implements ActionListener {
         frame.add(message);
         frame.add(numVal);
         frame.add(clearButton);//adds clear button
+        frame.add(outputMsg);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -76,19 +78,21 @@ public void actionPerformed(ActionEvent e)
     String out="";
 
     if(s.equals(NUM1[0])) {
-        value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText())));  //Changes input to radians in order to use sin function and return the value as a double 
-        numVal.setText(String.valueOf(value)); //gets value inputted in text box
+        value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText())));
+        numVal.setText(String.valueOf(value));
     }
     else if (s.equals(NUM1[1])) {
-        value = Math.cos(Math.toRadians(Double.parseDouble(numVal.getText()))); //Same operation as sin but with cos function
+        value = Math.cos(Math.toRadians(Double.parseDouble(numVal.getText())));
+        outputMsg.setText("Output: Cosine("+numVal.getText()+")="+value);
         numVal.setText(String.valueOf(value));
     }
     else if(s.equals(NUM1[2])) {
-        value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText()))); //tangent operaton
+        value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText())));
+        outputMsg.setText("Output: Tangent("+numVal.getText()+")="+value);
         numVal.setText(String.valueOf(value));
     }
-    else if(s.equals(NUM[0])) {
-        int x = Integer.parseInt(numVal.getText());
+    else if(s.equals(NUM[0])) { //use of if and else to provide direction of action
+        int x = Integer.parseInt(numVal.getText()); //Use fo wrapper class interger to convert from string to interger
 
         out="";
         int a; //
@@ -117,13 +121,16 @@ public void actionPerformed(ActionEvent e)
             else
             	out+=String.valueOf(a);//appends to string
             
+            
+            
         }
         //most important line of code, hardest to use
         numVal.setText("0x"+reverseString(out));//use of method which reverses the string because if you go through normal division, the remainder are not in correct order of a hex structure.
-        
+        outputMsg.setText("Output: Hex("+in+")="+numVal.getText());
     }
     else if(s.equals(NUM[1])) { //use of if and else to provide direction of action
         int x = Integer.parseInt(numVal.getText());
+        String in = numVal.getText();
         int a; //always decleared to avoid mixing with other values
         out=""; //always decleared to avoid mixing with other values
         for(; x>=1; x=x/2) { //decimal to binary
@@ -131,9 +138,11 @@ public void actionPerformed(ActionEvent e)
             out+=String.valueOf(a);
         }
         numVal.setText(reverseString(out)); //again use of 
+        outputMsg.setText("Output: Binary("+in+")="+numVal.getText());
     }
     else if(s.equals(NUM[2])) { 
         int x = Integer.parseInt(numVal.getText());
+        String in = numVal.getText();
         int a;
         out = "";
         for(;x>=1;x=x/8) { //decimal to octal
@@ -141,14 +150,16 @@ public void actionPerformed(ActionEvent e)
         	out+=String.valueOf(a);
         }
         numVal.setText(reverseString(out));
+        outputMsg.setText("Output: Octal("+in+")="+numVal.getText());
     }
     else if(s.equals("Clear")) //to clear input 
     {
     	numVal.setText("");
+        outputMsg.setText("");
     }
 
 }
-    // reverses th input string
+    // reverses the input string
     private String reverseString(String out) 
     {
     	char[] ch = out.toCharArray();
