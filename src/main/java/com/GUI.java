@@ -1,3 +1,5 @@
+package com;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -27,7 +29,7 @@ public class NamarRep extends JFrame implements ActionListener {
 
 	    // Initializing Key Objects
         frame = new JFrame(title);
-	    menubar = new JMenuBar();
+	    menubar = new JMenuBar(); 
 	    menu = new JMenu("Number Representations");
         menu1 = new JMenu("Trigonometric Functions");
         
@@ -65,26 +67,26 @@ public class NamarRep extends JFrame implements ActionListener {
 
 }
 
-public void actionPerformed(ActionEvent e) 
+public void actionPerformed(ActionEvent e)    
 {
-    String s = e.getActionCommand();
-    double value=0;
-    String out="";
+    String s = e.getActionCommand(); 
+    double value=0; //declaring double to hold values with decimals
+    String out="";  
 
     if(s.equals(NUM1[0])) {
-        value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText())));
-        numVal.setText(String.valueOf(value));
+        value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText())));  //Changes input to radians in order to use sin function and return the value as a double 
+        numVal.setText(String.valueOf(value)); //gets value inputted in text box
     }
     else if (s.equals(NUM1[1])) {
-        value = Math.cos(Math.toRadians(Double.parseDouble(numVal.getText())));
+        value = Math.cos(Math.toRadians(Double.parseDouble(numVal.getText()))); //Same operation as sin but with cos function
         numVal.setText(String.valueOf(value));
     }
     else if(s.equals(NUM1[2])) {
-        value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText())));
+        value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText()))); //tangent operaton
         numVal.setText(String.valueOf(value));
     }
     else if(s.equals(NUM[0])) {
-        int x = Integer.parseInt(numVal.getText());
+        int x = Integer.parseInt(numVal.getText()); 
 
         out="";
         int a;
