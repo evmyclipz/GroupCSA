@@ -74,21 +74,21 @@ public class NamarRep extends JFrame implements ActionListener {
 public void actionPerformed(ActionEvent e) 
 {
     String s = e.getActionCommand();
-    double value=0;
-    String out="";
+    double value=0; //initiliaze double to 0
+    String out=""; 
 
     if(s.equals(NUM1[0])) {
-        value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText())));
-        numVal.setText(String.valueOf(value));
+        value = Math.sin(Math.toRadians(Double.parseDouble(numVal.getText()))); //sin function where user input converts to radians to use
+        numVal.setText(String.valueOf(value)); //returns value
     }
     else if (s.equals(NUM1[1])) {
-        value = Math.cos(Math.toRadians(Double.parseDouble(numVal.getText())));
-        outputMsg.setText("Output: Cosine("+numVal.getText()+")="+value);
-        numVal.setText(String.valueOf(value));
+        value = Math.cos(Math.toRadians(Double.parseDouble(numVal.getText()))); //same function as above with cos uses double as return type as well
+        outputMsg.setText("Output: Cosine("+numVal.getText()+")="+value); //return
+        numVal.setText(String.valueOf(value)); 
     }
     else if(s.equals(NUM1[2])) {
-        value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText())));
-        outputMsg.setText("Output: Tangent("+numVal.getText()+")="+value);
+        value = Math.tan(Math.toRadians(Double.parseDouble(numVal.getText()))); //tangent function being used
+        outputMsg.setText("Output: Tangent("+numVal.getText()+")="+value); //output
         numVal.setText(String.valueOf(value));
     }
     else if(s.equals(NUM[0])) { //use of if and else to provide direction of action
